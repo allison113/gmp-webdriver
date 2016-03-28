@@ -1,0 +1,18 @@
+{
+  "name": "gmp-webdriverio",
+  "version": "1.0.0",
+  "description": "trying out some webdriver stuff",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Allison",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.3.0",
+    "wdio-mocha-framework": "^0.2.12",
+    "webdriverio": "^3.4.0"
+  }
+}
