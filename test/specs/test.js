@@ -6,13 +6,8 @@ describe('Test Suite', function () {
             .setValue('#spPassword', 'xxxx')
             .click('button[type="submit"]')
             .waitForVisible('#monthlyChart .c3-bar-13')
-            .moveTo('#monthlyChart .c3-bar-13',948,1152).then(function () {
-                this.click();
-            })
-            //.getLocation('#monthlyChart .c3-bar-13').then(function () {
-            //    console.log(arguments);
-            //});
-
+            .moveToObject('#monthlyChart .c3-bar-13')
+            .buttonPress()
             .waitForExist('#dailyChart .c3-bar-13');
 
     });
