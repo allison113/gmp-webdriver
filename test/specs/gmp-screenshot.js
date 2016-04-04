@@ -17,16 +17,14 @@ var api_key = 'key-dc2760264d397127841bf41c00ac1902',
     cidScreenShot = 'cid:'+ screenShot;
 
 describe('Test Suite', function () {
-    it('Should do something', function () {
+    it('Should take a screen shot of the Daily Stats then email a screen shot of the results to the logged in GMP user', function () {
         return browser
-            //.setViewportSize({width: 400, height: 1900})
             .url(startURL)
             .setValue(usernameField,username)
             .setValue(passwordField, password)
             .click(submitButton)
             .waitForExist(monthlyChart)
             .pause(3000)
-
             .getElementSize(monthlyChart)
             .then(function (size) {
                 var width = parseInt(size.width),
@@ -37,7 +35,6 @@ describe('Test Suite', function () {
                     .moveToObject(monthlyChart,xOffset,yOffset)
                     .buttonPress(0);
             })
-
             .waitForExist(dailyChart)
             .pause(2000)
             .scroll(monthlyUsageText)
