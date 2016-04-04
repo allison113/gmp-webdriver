@@ -1,3 +1,5 @@
 .idea/
 errorShots/
 node_modules/
+credentials.js
+daily-stats.png

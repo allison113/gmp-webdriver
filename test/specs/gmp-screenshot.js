@@ -1,19 +1,20 @@
-var api_key = 'key-dc2760264d397127841bf41c00ac1902',
+var credentials = require('./credentials'),
+    api_key = 'key-dc2760264d397127841bf41c00ac1902',
     domain = 'sandboxdd4b4191513b438785760d152d6ac0dc.mailgun.org',
     mailgun = require('mailgun-js')({apiKey: api_key, domain: domain}),
-    emailAddress = 'xxxxx',
+    emailAddress = credentials.username,
     emailSubject = 'Your Monthly & Daily GMP Stats',
     //non-mailgun variables
     startURL = 'https://account.greenmountainpower.com/#/public/login',
     username = emailAddress,
-    password = 'xxxxx',
+    password = credentials.password,
     usernameField = '#spUsername',
     passwordField = '#spPassword',
     submitButton = 'button[type="submit"]',
     monthlyChart = '#monthlyChart .c3-event-rect-13',
     dailyChart = '#dailyChart',
     monthlyUsageText = 'h4=Monthly Usage',
-    screenShot = 'daily-stats.png';
+    screenShot = 'daily-stats.png',
     cidScreenShot = 'cid:'+ screenShot;
 
 describe('Test Suite', function () {
@@ -47,7 +48,7 @@ describe('Test Suite', function () {
                     to: emailAddress,
                     subject: emailSubject,
                     inline: screenShot,
-                    html: '<html>Here are your stats: <img src="'+cidScreenShot+'"></html>'
+                    html: `<html>Here are your stats: <img src="${cidScreenShot}"></html>`
                 };
 
                 return mailgun.messages().send(data, function (error, body) {
