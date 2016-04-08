@@ -15,7 +15,9 @@ var credentials = require('./credentials'),
     monthlyChartConsumed = "#monthlyChart .c3-legend-item-event",
     dailyChart = '#dailyChart',
     hourlyChart = '#hourlyChart',
-    dailyChartBar = '#dailyChart .c3-event-rect-6',
+    date = new Date();
+    dayOfMonth = date.getDate();
+    dailyChartBar = '#dailyChart .c3-event-rect-'+(dayOfMonth-2),//previous day's stats
     monthlyUsageText = 'h4=Monthly Usage',
     screenShot = 'daily-stats.png',
     cidScreenShot = 'cid:'+ screenShot;
