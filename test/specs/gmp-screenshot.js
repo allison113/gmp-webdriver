@@ -12,7 +12,10 @@ var credentials = require('./credentials'),
     passwordField = '#spPassword',
     submitButton = 'button[type="submit"]',
     monthlyChart = '#monthlyChart .c3-event-rect-13',
+    monthlyChartConsumed = "#monthlyChart .c3-legend-item-event",
     dailyChart = '#dailyChart',
+    hourlyChart = '#hourlyChart',
+    dailyChartBar = '#dailyChart .c3-event-rect-6',
     monthlyUsageText = 'h4=Monthly Usage',
     screenShot = 'daily-stats.png',
     cidScreenShot = 'cid:'+ screenShot;
@@ -39,7 +42,22 @@ describe('Test Suite', function () {
             .waitForExist(dailyChart)
             .pause(2000)
             .scroll(monthlyUsageText)
-            .saveScreenshot(screenShot)
+
+            //attempt to hover on previous day's stats before taking screen shot
+            .getElementSize(dailyChartBar)
+            .then(function (sizeDailyChartBar) {
+                var width = parseInt(sizeDailyChartBar.width),
+                    xOffset = (width / 2) + 1;
+                var yOffset = sizeDailyChartBar.height - 1;
+
+                browser
+                    .moveToObject(dailyChartBar,xOffset,yOffset)
+                    .buttonPress(0);
+            })
+                .waitForExist(hourlyChart)
+                .pause(2000)
+                .scroll(monthlyChartConsumed)
+                .saveScreenshot(screenShot)
 
             //send the screen shot
             .then(function () {
